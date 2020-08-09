@@ -50,7 +50,7 @@ class Node {
     }
 
     toJSON() {
-        return JSON.stringify({'type': 'Node', ...this});
+        return JSON.stringify({'Node': { ...this }});
     }
 }
 

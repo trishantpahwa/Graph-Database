@@ -146,14 +146,15 @@ describe('Testing Node functions', function() {
         let nodeID = node.getID();
         let data = node.toJSON();
         assert.deepEqual(data, JSON.stringify({
-            "type": "Node",
-            "id": nodeID,
-            "name": "Student",
-            "properties": {
-                "Firstname":"Trishant",
-                "Lastname":"Pahwa"
-            },
-            "relationships": []
+            "Node": {
+                "id": nodeID,
+                "name": "Student",
+                "properties": {
+                    "Firstname":"Trishant",
+                    "Lastname":"Pahwa"
+                },
+                "relationships": []
+            }
         }));
     });
 });
