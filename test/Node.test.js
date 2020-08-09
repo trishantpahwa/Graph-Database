@@ -1,4 +1,5 @@
 const assert = require('assert');
+const fs = require('fs');
 
 const Node = require('../src/Node');
 const SingleDirectionRelationship = require('../src/SingleDirectionRelationship');
@@ -136,5 +137,23 @@ describe('Testing Node constructors', function() {
                 }
             }
         })
+    });
+});
+
+describe('Testing Node functions', function() {
+    it('Should return the Node in JSON format', function() {
+        let node = new Node('Student', {'Firstname': 'Trishant', 'Lastname': 'Pahwa'}, []);
+        let nodeID = node.getID();
+        let data = node.toJSON();
+        assert.deepEqual(data, JSON.stringify({
+            "type": "Node",
+            "id": nodeID,
+            "name": "Student",
+            "properties": {
+                "Firstname":"Trishant",
+                "Lastname":"Pahwa"
+            },
+            "relationships": []
+        }));
     });
 });

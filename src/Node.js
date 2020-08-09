@@ -48,6 +48,10 @@ class Node {
         var relationshipIndex = this.relationships.indexOf(relationship);
         this.relationships.splice(relationshipIndex, 1);
     }
+
+    toJSON() {
+        return JSON.stringify({'type': 'Node', ...this});
+    }
 }
 
 module.exports = Node;
@@ -66,3 +70,8 @@ module.exports = Node;
         class Relationship
     ]
 }*/
+
+
+
+
+// Let's start writing to files to save the graph!
