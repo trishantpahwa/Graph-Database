@@ -8,10 +8,17 @@ class Relationship {
     realtedNode = null;
     direction = null;
 
-    constructor() {
+    constructor(name, properties, relatedNode, direction) {
         this.id = uuid();
+        this.setName(name);
+        this.setProperties(properties);
+        this.setRelatedNode(relatedNode);
+        this.setDirection(direction);
     }
 
+    getID() {
+        return this.id;
+    }
     setName(name) {
         this.name = name;
     }
@@ -31,7 +38,18 @@ class Relationship {
         delete this.properties.property;
     }
     setRelatedNode(relatedNode) {
-        this.relatedNode = relatedNode;
+        if(typeof relatedNode === 'string') {
+            this.relatedNode = relatedNode;
+        }
+        if(relatedNode.constructor.name === 'Node') {
+            this.realtedNode = relatedNode.getID();
+        }
+        if(Array.isArray(relatedNode)) {
+            this.realtedNode = {
+                left: relatedNode[0].getID(),
+                right: relatedNode[1].getID()
+            };
+        }
     }
     getRelatedNode() {
         return this.relatedNode
@@ -44,7 +62,10 @@ class Relationship {
     }
 }
 
-Relationship {
+
+module.exports = Relationship;
+// Basic structure
+/*Relationship {
     id: 'some-randome-id',
     name: 'studies',
     properties: {
@@ -52,4 +73,4 @@ Relationship {
     },
     direction: 'both',
     relatedNode: 'i-am-something-random-2' // UUID
-}
+}*/

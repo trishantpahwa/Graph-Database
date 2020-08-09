@@ -7,10 +7,16 @@ class Node {
     properties = { };
     relationships = [ ];
 
-    constructor() {
+    constructor(name, properties, relationships) {
         this.id = uuid();
+        this.setName(name);
+        this.setProperties(properties);
+        this.setRelationships(relationships);
     }
 
+    getID() {
+        return this.id;
+    }
     setName(name) {
         this.name = name;
     }
@@ -36,7 +42,7 @@ class Node {
         return this.relationships;
     }
     addRelationship(relationship) {
-        this.relationship.push(relationship);
+        this.relationships.push(relationship);
     }
     removeRelationship(relationship) {
         var relationshipIndex = this.relationships.indexOf(relationship);
@@ -44,18 +50,11 @@ class Node {
     }
 }
 
-function tests() {
-    let n = new Node();
-    console.log(n);
-}
+module.exports = Node;
 
-tests();
+// Basic structure
 
-
-
-
-
-Node {
+/*Node {
     id: 'i-am-something-random',
     name: 'Student',
     properties: {
@@ -66,4 +65,4 @@ Node {
         class Relationship,
         class Relationship
     ]
-}
+}*/
