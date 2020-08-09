@@ -1,0 +1,26 @@
+{
+  "name": "graph-database",
+  "version": "1.0.0",
+  "description": "A graph database",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trishantpahwa/graph-database.git"
+  },
+  "keywords": [
+    "Graph",
+    "Database"
+  ],
+  "author": "Trishant Pahwa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trishantpahwa/graph-database/issues"
+  },
+  "homepage": "https://github.com/trishantpahwa/graph-database#readme",
+  "dependencies": {
+    "uuid": "^8.3.0"
+  }
+}
