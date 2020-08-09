@@ -141,20 +141,39 @@ describe('Testing Node constructors', function() {
 });
 
 describe('Testing Node functions', function() {
+    it('Should return the Node in JSON String format', function() {
+        let node = new Node('Student', {'Firstname': 'Trishant', 'Lastname': 'Pahwa'}, []);
+        let data = node.toJSONString();
+        let _n = 'Node-' + node.getID();
+        assert.deepEqual(data, JSON.stringify({
+            [_n]: {
+                "id": node.getID(),
+                "name": "Student",
+                "properties": {
+                    "Firstname":"Trishant",
+                    "Lastname":"Pahwa"
+                },
+                "relationships": [],
+                "Type": 'Node'
+            }
+        }));
+    });
     it('Should return the Node in JSON format', function() {
         let node = new Node('Student', {'Firstname': 'Trishant', 'Lastname': 'Pahwa'}, []);
         let nodeID = node.getID();
         let data = node.toJSON();
-        assert.deepEqual(data, JSON.stringify({
-            "Node": {
+        let _n = 'Node-' + node.getID();
+        assert.deepEqual(data, {
+            [_n]: {
                 "id": nodeID,
                 "name": "Student",
                 "properties": {
                     "Firstname":"Trishant",
                     "Lastname":"Pahwa"
                 },
-                "relationships": []
+                "relationships": [],
+                "Type": 'Node'
             }
-        }));
+        });
     });
 });
