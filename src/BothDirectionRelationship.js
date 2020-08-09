@@ -2,7 +2,7 @@ const Relationship = require('./Relationship');
 
 class BothDirectionRelationship extends Relationship {
     
-    constructor(name, properties, relatedNode, selfNode) {
+    constructor(name, properties, relatedNode) {
         super(name, properties, relatedNode, 'both');
     }
 
