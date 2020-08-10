@@ -47,18 +47,15 @@ class Database {
             }, null, 4).slice(1, -1) + '}';
         }
         fs.appendFileSync(this.mapName, dataToWrite);
-        // let stream = fs.createReadStream(this.dbName, {start: start, end: end});
-        // stream.on('data', function(chunk) {
-        //     console.log(JSON.parse('{' + chunk.toString() + '}'));
-        // });
-        // stream.on('close', function() {
-        //     console.log('File read completely');
-        // });
         } catch(exception) {
             console.log(exception);
         }
     }
+    countDatabaseObjects() {
+        var data = fs.readFileSync(this.mapName);
+        data = JSON.parse(data);
+        return Object.keys(data).length;
+    }
 }
-// So we are basically saving the data and have another file to create a hash map of the objects in data for faster queries.
 
 module.exports = Database;
