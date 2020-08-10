@@ -6,24 +6,36 @@ const Node = require('../src/Node');
 
 describe('Interaction with the database.', function() {
     it('Should create a Node in an empty database', function() {
-        const dbName = 'mydatabase.graphdb';
-        fs.writeFileSync(dbName, '{\n\n}');
+        const dbName = 'mydatabase';
+        fs.writeFileSync(dbName + '.graphdb', '{\n\n}');
+        fs.writeFileSync(dbName + '.map', '{\n\n}');
         let database = new Database(dbName);
         let node = new Node('Student', {'Firstname': 'Trishant', 'Lastname': 'Pahwa'}, []);
         database.addObjectToDatabase(node.toJSON());
-        let writtenData = fs.readFileSync(dbName);
+        let writtenData = fs.readFileSync(dbName + '.map').toString();
+        console.log(writtenData);
         writtenData = JSON.parse(writtenData);
-        assert.deepEqual(writtenData, node.toJSON());
+        let start = parseInt(writtenData[node.getID()].start);
+        let end = parseInt(writtenData[node.getID()].end);
+        var stream = fs.createReadStream(dbName + '.graphdb', {start: start, end: end});
+        stream.on('data', function(chunk) {
+            let _n = JSON.parse('{' + chunk.toString() + '}');
+            assert.deepEqual(_n, node.toJSON());
+        });
     });
     it('Should add a node to a non-empty database.', function() {
-       const dbName = 'mydatabase.graphdb';
+       const dbName = 'mydatabase';
         let database = new Database(dbName);
         let node = new Node('Student', {'Firstname': 'Trishant', 'Lastname': 'Pahwa'}, []);
         database.addObjectToDatabase(node.toJSON());
-        let writtenData = fs.readFileSync(dbName);
+        let writtenData = fs.readFileSync(dbName + '.map').toString();
         writtenData = JSON.parse(writtenData);
-        let _n = 'Node-' + node.getID();
-        writtenData = { [_n]: writtenData[_n] };
-        assert.deepEqual(writtenData, node.toJSON());
+        let start = parseInt(writtenData[node.getID()].start);
+        let end = parseInt(writtenData[node.getID()].end);
+        var stream = fs.createReadStream(dbName + '.graphdb', {start: start, end: end});
+        stream.on('data', function(chunk) {
+            let _n = JSON.parse('{' + chunk.toString() + '}');
+            assert.deepEqual(_n, node.toJSON());
+        });
     });
 });
