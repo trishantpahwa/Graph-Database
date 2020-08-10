@@ -4,7 +4,8 @@
   "description": "A graph database",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "dbInit": "node src/dbInit.js"
   },
   "repository": {
     "type": "git",
