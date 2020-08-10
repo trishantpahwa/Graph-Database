@@ -51,11 +51,11 @@ class Node {
 
     toJSON() {
         let _n = 'Node-' + this.getID();
-        return { [_n]: { ...this, 'Type': 'Node' }};
+        return { [_n]: { ...this, 'type': 'Node' }};
     }
     toJSONString() {
         let _n = 'Node-' + this.getID();
-        return JSON.stringify({ [_n]: { ...this, 'Type': 'Node' }});
+        return JSON.stringify({ [_n]: { ...this, 'type': 'Node' }});
 
     }
 }

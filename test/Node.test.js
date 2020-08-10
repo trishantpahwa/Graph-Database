@@ -154,7 +154,7 @@ describe('Testing Node functions', function() {
                     "Lastname":"Pahwa"
                 },
                 "relationships": [],
-                "Type": 'Node'
+                "type": 'Node'
             }
         }));
     });
@@ -172,7 +172,7 @@ describe('Testing Node functions', function() {
                     "Lastname":"Pahwa"
                 },
                 "relationships": [],
-                "Type": 'Node'
+                "type": 'Node'
             }
         });
     });
